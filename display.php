@@ -25,6 +25,16 @@ $getImage->execute();
 // データをキーごとに分割
 $row = $getImage->fetch(PDO::FETCH_ASSOC);
 // 出力
-header('Content-type: image/jpeg');
+switch($row['extension']){
+	case IMAGETYPE_JPEG:
+		header('Content-type: image/jpeg');
+		break;
+	case IMAGETYPE_PNG:
+		header('Content-type: image/png');
+		break;
+	case IMAGETYPE_GIF:
+		header('Content-type: image/gif');
+		break;
+}
 echo ($row['image']);
 ?>
